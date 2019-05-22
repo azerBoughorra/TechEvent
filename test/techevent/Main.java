@@ -5,18 +5,11 @@
  */
 package techevent;
 
-import edu.esprit.entities.Entreprise;
-import edu.esprit.entities.UserAccount;
-import edu.esprit.utils.DBManager;
+import edu.esprit.models.Entreprise;
+import edu.esprit.utils.DBConnection;
 import java.sql.Connection;
-
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.spi.PersistenceUnitTransactionType;
 
 /**
  *
@@ -30,7 +23,7 @@ public class Main {
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-     /*   Connection connexion;
+        Connection connexion;
          connexion=DBConnection.getInstance().getConnection();
         
         
@@ -44,12 +37,7 @@ public class Main {
             
          }
          System.out.println(e);
-         */
-
-        UserAccount e = DBManager.getInstance().getUserAccountController().findUserAccount(2);
-        e.setUserEmail("usser@gmail.com");
-        DBManager.getInstance().getUserAccountController().edit(e);
-        System.out.println(e);
+        
     }
 
 }
