@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -25,7 +26,9 @@ public class CommentService extends ServiceUtils implements ICommentService {
 
     @Override
     public List<Comment> findByEventId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return findAll().stream()
+                .filter(c -> c.getEventId() == id)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -40,10 +43,9 @@ public class CommentService extends ServiceUtils implements ICommentService {
             ResultSet rs = executeSelect("select * from event_comment where isdelete=0");
             while (rs.next()) {
                 Comment c = new Comment(rs.getInt("EVENT_COMMENT_ID_PK"),
-                          rs.getInt("EVENT_COMMENT_EVENT_ID_FK"),
-                  //      ServiceManager.getInstance().getEventService().find(rs.getInt("EVENT_COMMENT_EVENT_ID_FK")),
-                          ServiceManager.getInstance().getUserService().find(rs.getInt("EVENT_COMMENT_USER_ID_FK")),
-                          rs.getString("EVENT_COMMENT_BODY"));
+                        rs.getInt("EVENT_COMMENT_EVENT_ID_FK"),
+                        ServiceManager.getInstance().getUserService().find(rs.getInt("EVENT_COMMENT_USER_ID_FK")),
+                        rs.getString("EVENT_COMMENT_BODY"));
                 l.add(c);
             }
         } catch (Exception ex) {
