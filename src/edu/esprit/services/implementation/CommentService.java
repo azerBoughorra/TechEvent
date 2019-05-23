@@ -37,7 +37,7 @@ public class CommentService extends ServiceUtils implements ICommentService {
     public List<Comment> findAll() {
         List<Comment> l = new ArrayList<>();
         try {
-            ResultSet rs = executeSelect("select * from event_comment where isdelete=0");
+            ResultSet rs = executeSelect("select * from event_comment where isdeleted=0");
             while (rs.next()) {
                 Comment c = new Comment(rs.getInt("EVENT_COMMENT_ID_PK"),
                         ServiceManager.getInstance().getEventService().find(rs.getInt("EVENT_COMMENT_EVENT_ID_FK")),
