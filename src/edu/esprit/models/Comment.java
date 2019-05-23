@@ -12,19 +12,19 @@ package edu.esprit.models;
 public class Comment extends Reportable {
 
     private int id;
-    private Event event;
+    private int eventId;
     private User User;
     private String body;
 
-    public Comment(int id, Event event, User User, String body) {
+    public Comment(int id, int eventId, User User, String body) {
         this.id = id;
-        this.event = event;
+        this.eventId = eventId;
         this.User = User;
         this.body = body;
     }
 
-    public Comment(Event event, User User, String body) {
-        this.event = event;
+    public Comment(int eventId, User User, String body) {
+        this.eventId = eventId;
         this.User = User;
         this.body = body;
     }
@@ -37,12 +37,12 @@ public class Comment extends Reportable {
         this.id = id;
     }
 
-    public Event getEvent() {
-        return event;
+    public int getEventId() {
+        return eventId;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setEvent(int eventId) {
+        this.eventId = eventId;
     }
 
     public User getUser() {
@@ -63,7 +63,7 @@ public class Comment extends Reportable {
 
     @Override
     public String toString() {
-        return "Comment{" + "id=" + id + ", event=" + event + ", User=" + User + ", body=" + body + '}';
+        return "Comment{" + "id=" + id + ", event=" + eventId + ", User=" + User + ", body=" + body + '}';
     }
      
 }
