@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author azer
  */
-public class User extends Reportable{
+public class User extends Reportable {
 
     private int id;
     private String email;
@@ -26,8 +26,6 @@ public class User extends Reportable{
     private Entreprise entreprise;
     private RoleUser role;
     List<Participation> participations;
-
-    
 
     public User(int id, String email, String name, String lastName, String login, String password, Date birthday, String adress, String photoURL, Entreprise entreprise, RoleUser role) {
         this.id = id;
@@ -143,6 +141,7 @@ public class User extends Reportable{
     public void setRoleID(RoleUser role) {
         this.role = role;
     }
+
     public List<Participation> getParticipations() {
         return participations;
     }
@@ -155,6 +154,5 @@ public class User extends Reportable{
     public String toString() {
         return "User{" + "id=" + id + ", email=" + email + ", name=" + name + ", lastName=" + lastName + ", login=" + login + ", password=" + password + ", birthday=" + birthday + ", adress=" + adress + ", photoURL=" + photoURL + ", entreprise=" + entreprise + ", role=" + role + ", participations=" + participations + '}';
     }
-    
 
 }

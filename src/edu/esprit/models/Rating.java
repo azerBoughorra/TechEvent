@@ -12,12 +12,12 @@ package edu.esprit.models;
 public class Rating {
 
     private User user;
-    private Event event;
+    private int eventId;
     private double rate;
 
-    public Rating(User user, Event event, double rate) {
+    public Rating(User user, int eventId, double rate) {
         this.user = user;
-        this.event = event;
+        this.eventId = eventId;
         this.rate = rate;
     }
 
@@ -29,12 +29,12 @@ public class Rating {
         this.user = user;
     }
 
-    public Event getEvent() {
-        return event;
+    public int getEventId() {
+        return eventId;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setEventId(int event) {
+        this.eventId = event;
     }
 
     public double getRate() {
@@ -47,7 +47,7 @@ public class Rating {
 
     @Override
     public String toString() {
-        return "Rating{" + "user=" + user + ", event=" + event + ", rate=" + rate + '}';
+        return "Rating{" + "user=" + user + ", event=" + eventId + ", rate=" + rate + '}';
     }
     
     
