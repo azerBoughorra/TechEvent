@@ -11,35 +11,35 @@ package edu.esprit.models;
  */
 public class Participation {
 
-    private User user;
-    private Event event;
+    private int userId;
+    private int eventId;
     private RoleParticipation role;
 
-    public Participation(User user, Event event, RoleParticipation role) {
-        this.user = user;
-        this.event = event;
+    public Participation(int user, int eventId, RoleParticipation role) {
+        this.userId = user;
+        this.eventId = eventId;
         this.role = role;
     }
 
-    public Participation(Event event, RoleParticipation role) {
-        this.event = event;
+    public Participation(int eventId, RoleParticipation role) {
+        this.eventId = eventId;
         this.role = role;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public Event getEvent() {
-        return event;
+    public int getEventId() {
+        return eventId;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
     }
 
     public RoleParticipation getRole() {
@@ -52,9 +52,7 @@ public class Participation {
 
     @Override
     public String toString() {
-        return "Participation{" + "user=" + user + ", event=" + event + ", role=" + role + '}';
+        return "Participation{" + "user=" + userId + ", event=" + eventId + ", role=" + role + '}';
     }
-    
-    
 
 }

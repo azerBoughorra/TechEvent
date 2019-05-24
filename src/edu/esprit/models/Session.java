@@ -13,26 +13,26 @@ import java.util.Date;
  */
 public class Session {
 
-    private Event event;
+    private int eventId;
     private Date startTime;
     private Date endTime;
     private String name;
     private String description;
 
-    public Session(Event event, Date startTime, Date endTime, String name, String description) {
-        this.event = event;
+    public Session(int eventId, Date startTime, Date endTime, String name, String description) {
+        this.eventId = eventId;
         this.startTime = startTime;
         this.endTime = endTime;
         this.name = name;
         this.description = description;
     }
 
-    public Event getEvent() {
-        return event;
+    public int getEventId() {
+        return eventId;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
     }
 
     public Date getStartTime() {
@@ -67,9 +67,11 @@ public class Session {
         this.description = description;
     }
 
+   
+
     @Override
     public String toString() {
-        return "Session{" + "event=" + event + ", startTime=" + startTime + ", endTime=" + endTime + ", name=" + name + ", description=" + description + '}';
+        return "Session{" + "event=" + eventId + ", startTime=" + startTime + ", endTime=" + endTime + ", name=" + name + ", description=" + description + '}';
     }
     
     
