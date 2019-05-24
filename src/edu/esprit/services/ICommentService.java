@@ -12,7 +12,5 @@ import java.util.List;
  *
  * @author azer
  */
-public interface ICommentService extends IService<Comment> {
-
-    List<Comment> findByEventId(int id);
+public interface ICommentService extends IEventRelatedService<Comment> {
 }

@@ -6,11 +6,12 @@
 package edu.esprit.services;
 
 import edu.esprit.models.Rating;
+import java.util.List;
 
 /**
  *
  * @author azer
  */
-public interface IRatingService extends IService<Rating>{
+public interface IRatingService extends IEventRelatedService<Rating>{
     
 }
