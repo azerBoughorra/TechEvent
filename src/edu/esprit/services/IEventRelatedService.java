@@ -5,13 +5,12 @@
  */
 package edu.esprit.services;
 
-import edu.esprit.models.Participation;
 import java.util.List;
 
 /**
  *
- * @author azer
+ * @author abkhaldi
  */
-public interface IParticipationService extends IEventRelatedService<Participation> {
-
+public interface IEventRelatedService<T> extends IService<T>{
+    List<T> findByEvent(int id);
 }

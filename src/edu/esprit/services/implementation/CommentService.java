@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class CommentService extends ServiceUtils implements ICommentService {
 
     @Override
-    public List<Comment> findByEventId(int id) {
+    public List<Comment> findByEvent(int id) {
         return findAll().stream()
                 .filter(c -> c.getEventId() == id)
                 .collect(Collectors.toList());
