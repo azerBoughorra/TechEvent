@@ -11,6 +11,6 @@ import edu.esprit.models.Session;
  *
  * @author azer
  */
-public interface ISessionService extends IService<Session> {
+public interface ISessionService extends IEventRelatedService<Session> {
     
 }
