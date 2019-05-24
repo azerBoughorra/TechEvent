@@ -53,7 +53,7 @@ public class ServiceManager {
         commentService=new CommentService();        
     }
     
-    public static  ServiceManager getInstance() throws Exception{
+    public static  ServiceManager getInstance() {
         if(instance == null)
             instance = new ServiceManager();
         return instance;
