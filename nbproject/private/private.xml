@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/yjaballi/Documents/TechEvent/src/edu/esprit/services/implementation/ParticipationService.java</file>
+            <file>file:/C:/Users/yjaballi/Documents/TechEvent/src/edu/esprit/services/IService.java</file>
+            <file>file:/C:/Users/yjaballi/Documents/TechEvent/src/edu/esprit/services/implementation/CommentService.java</file>
+            <file>file:/C:/Users/yjaballi/Documents/TechEvent/src/edu/esprit/services/ISessionService.java</file>
+            <file>file:/C:/Users/yjaballi/Documents/TechEvent/src/edu/esprit/services/IEventRelatedService.java</file>
+            <file>file:/C:/Users/yjaballi/Documents/TechEvent/src/edu/esprit/services/IUserService.java</file>
+            <file>file:/C:/Users/yjaballi/Documents/TechEvent/src/edu/esprit/services/IRoleUserService.java</file>
+        </group>
     </open-files>
 </project-private>
