@@ -11,9 +11,9 @@ import edu.esprit.services.ServiceUtils;
 import edu.esprit.services.exeptions.ComposedIDExeption;
 import edu.esprit.utils.ServiceManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -33,7 +33,11 @@ public class CommentService extends ServiceUtils implements ICommentService {
 
     @Override
     public Comment find(int id) throws ComposedIDExeption {
-        return findAll().stream().filter(c -> c.getId() == id).findFirst().get();
+        Optional<Comment> o = findAll().stream()
+                .filter(c -> c.getId() == id)
+                .findFirst();
+        return o.isPresent() ? o.get() : null;
+
     }
 
     @Override

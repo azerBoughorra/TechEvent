@@ -15,6 +15,7 @@ import edu.esprit.utils.ServiceManager;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -23,9 +24,11 @@ public class EventService extends ServiceUtils implements IEventService {
 
     @Override
     public Event find(int id) throws ComposedIDExeption {
-        return findAll().stream()
+        Optional<Event> o = findAll().stream()
                 .filter(c -> c.getId() == id)
-                .findFirst().get();
+                .findFirst();
+        return o.isPresent() ? o.get() : null;
+
     }
 
     @Override
@@ -45,6 +48,7 @@ public class EventService extends ServiceUtils implements IEventService {
                         ServiceManager.getInstance().getSessionService().findByEvent(rs.getInt("EVENT_ID_PK")),
                         ServiceManager.getInstance().getCommentService().findByEvent(rs.getInt("EVENT_ID_PK"))
                 );
+                ev.setReports(ServiceManager.getInstance().getReportService().findByEvent(rs.getInt("EVENT_ID_PK")));
                 l.add(ev);
             }
         } catch (Exception ex) {
@@ -67,9 +71,9 @@ public class EventService extends ServiceUtils implements IEventService {
                 + "values ("
                 + obj.getId()
                 + "," + obj.getTitle()
-                + "," + obj.getDescription()
-                + ",'" + obj.getPhotoURL()
-                + "," + obj.getOrganisator().getId()
+                + ",'" + obj.getDescription()
+                + "','" + obj.getPhotoURL()
+                + "'," + obj.getOrganisator().getId()
                 + "," + obj.getLocation().getId()
                 + ",'" + obj.getCategory().getId()
                 + ",'" + obj.getPrice()
@@ -77,16 +81,18 @@ public class EventService extends ServiceUtils implements IEventService {
                 + ")";
 
         boolean r = execute(sql);
-       
-        for (Participation p:obj.getParticipations()){
-            if(!ServiceManager.getInstance().getParticipationService().create(p))
-                r=false;
+
+        for (Participation p : obj.getParticipations()) {
+            if (!ServiceManager.getInstance().getParticipationService().create(p)) {
+                r = false;
+            }
         }
-        for (Session p:obj.getSessions()){
-            if(!ServiceManager.getInstance().getSessionService().create(p))
-                r=false;
+        for (Session p : obj.getSessions()) {
+            if (!ServiceManager.getInstance().getSessionService().create(p)) {
+                r = false;
+            }
         }
-        
+
         return r;
     }
 
