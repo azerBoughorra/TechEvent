@@ -48,6 +48,7 @@ public class EventService extends ServiceUtils implements IEventService {
                         ServiceManager.getInstance().getSessionService().findByEvent(rs.getInt("EVENT_ID_PK")),
                         ServiceManager.getInstance().getCommentService().findByEvent(rs.getInt("EVENT_ID_PK"))
                 );
+                ev.setReports(ServiceManager.getInstance().getReportService().findByEvent(rs.getInt("EVENT_ID_PK")));
                 l.add(ev);
             }
         } catch (Exception ex) {
