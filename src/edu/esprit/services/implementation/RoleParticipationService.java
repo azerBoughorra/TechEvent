@@ -5,12 +5,10 @@
  */
 package edu.esprit.services.implementation;
 
-import edu.esprit.models.Participation;
 import edu.esprit.models.RoleParticipation;
 import edu.esprit.services.IRoleParticipationService;
 import edu.esprit.services.ServiceUtils;
 import edu.esprit.services.exeptions.ComposedIDExeption;
-import edu.esprit.utils.ServiceManager;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;

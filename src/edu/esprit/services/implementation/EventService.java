@@ -69,14 +69,14 @@ public class EventService extends ServiceUtils implements IEventService {
                 + "`ISDELETED`)"
                 + "values ("
                 + obj.getId()
-                + ",'" + obj.getTitle()
-                + "','" + obj.getDescription()
+                + "," + obj.getTitle()
+                + ",'" + obj.getDescription()
                 + "','" + obj.getPhotoURL()
                 + "'," + obj.getOrganisator().getId()
                 + "," + obj.getLocation().getId()
-                + "," + obj.getCategory().getId()
-                + "," + obj.getPrice()
-                + ",0"
+                + ",'" + obj.getCategory().getId()
+                + ",'" + obj.getPrice()
+                + "',0"
                 + ")";
 
         boolean r = execute(sql);

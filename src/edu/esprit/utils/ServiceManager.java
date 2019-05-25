@@ -5,6 +5,7 @@
  */
 package edu.esprit.utils;
 
+import com.sun.org.apache.bcel.internal.generic.IUSHR;
 import edu.esprit.services.ICategoryService;
 import edu.esprit.services.ICommentService;
 import edu.esprit.services.IEntrepriseService;
@@ -21,7 +22,13 @@ import edu.esprit.services.implementation.CommentService;
 import edu.esprit.services.implementation.EventService;
 import edu.esprit.services.implementation.ParticipationService;
 import edu.esprit.services.implementation.RoleParticipationService;
-
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  *
@@ -45,11 +52,10 @@ public class ServiceManager {
     
     
     private ServiceManager() {
-        //categoryService=new implementation
-        commentService=new CommentService();  
+        commentService=new CommentService();
+        roleParticipationService=new RoleParticipationService();
         participationService=new ParticipationService();
         eventService=new EventService();
-        roleParticipationService=new RoleParticipationService();
     }
     
     public static  ServiceManager getInstance() {

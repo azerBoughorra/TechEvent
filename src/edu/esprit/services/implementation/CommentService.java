@@ -34,7 +34,8 @@ public class CommentService extends ServiceUtils implements ICommentService {
     @Override
     public Comment find(int id) throws ComposedIDExeption {
         Optional<Comment> o = findAll().stream()
-                .filter(c -> c.getId() == id).findFirst();
+                .filter(c -> c.getId() == id)
+                .findFirst();
         return o.isPresent() ? o.get() : null;
 
     }
