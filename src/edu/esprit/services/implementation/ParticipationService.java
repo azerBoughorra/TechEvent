@@ -5,9 +5,7 @@
  */
 package edu.esprit.services.implementation;
 
-import edu.esprit.models.Event;
 import edu.esprit.models.Participation;
-import edu.esprit.services.IEventService;
 import edu.esprit.services.IParticipationService;
 import edu.esprit.services.ServiceUtils;
 import edu.esprit.services.exeptions.ComposedIDExeption;

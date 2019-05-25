@@ -6,7 +6,9 @@
 package techevent;
 
 import edu.esprit.models.Entreprise;
+import edu.esprit.models.RoleParticipation;
 import edu.esprit.utils.DBConnection;
+import edu.esprit.utils.ServiceManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -23,21 +25,12 @@ public class Main {
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-        Connection connexion;
-         connexion=DBConnection.getInstance().getConnection();
-        
-        
-         String req = "select * from entreprise";
-         Statement stm = connexion.createStatement();
-         ResultSet rst = stm.executeQuery(req);
-         Entreprise e = null;
-         while (rst.next()) {
-         e = new Entreprise(rst.getInt("ENTREPRISE_ID_PK"), 
-         rst.getString("ENTREPRISE_NAME"));
-            
-         }
-         System.out.println(e);
-        
+        RoleParticipation r = ServiceManager.getInstance().getRoleParticipationService().find(2);
+       // r.setDescription("modified");
+        //System.out.println(ServiceManager.getInstance().getRoleParticipationService().edit(r));
+       // System.out.println(ServiceManager.getInstance().getRoleParticipationService().findAll());
+        System.out.println(r);
+
     }
 
 }
