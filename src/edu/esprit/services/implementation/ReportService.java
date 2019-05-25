@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.esprit.services;
-
-import edu.esprit.models.Report;
+package edu.esprit.services.implementation;
 
 /**
  *
- * @author azer
+ * @author Djo
  */
-
-public interface IReportService extends IEventRelatedService<Report> {
-    
+public class ReportService {
     
 }
