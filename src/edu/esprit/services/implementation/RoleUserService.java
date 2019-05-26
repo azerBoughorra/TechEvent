@@ -56,7 +56,7 @@ public class RoleUserService extends ServiceUtils implements IRoleUserService {
                 + "values ("
                 + "'" + obj.getDescription()
                 + "',0"
-                + "')";
+                + ")";
         return execute(sql);
     }
 
