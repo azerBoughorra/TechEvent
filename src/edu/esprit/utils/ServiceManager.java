@@ -5,7 +5,6 @@
  */
 package edu.esprit.utils;
 
-import com.sun.org.apache.bcel.internal.generic.IUSHR;
 import edu.esprit.services.ICategoryService;
 import edu.esprit.services.ICommentService;
 import edu.esprit.services.IEntrepriseService;
@@ -18,17 +17,17 @@ import edu.esprit.services.IRoleParticipationService;
 import edu.esprit.services.IRoleUserService;
 import edu.esprit.services.ISessionService;
 import edu.esprit.services.IUserService;
+import edu.esprit.services.implementation.CategoryService;
 import edu.esprit.services.implementation.CommentService;
+import edu.esprit.services.implementation.EntrepriseService;
 import edu.esprit.services.implementation.EventService;
 import edu.esprit.services.implementation.ParticipationService;
+import edu.esprit.services.implementation.RatingService;
 import edu.esprit.services.implementation.RoleParticipationService;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Properties;
+import edu.esprit.services.implementation.RoleUserService;
+import edu.esprit.services.implementation.SessionService;
+import edu.esprit.services.implementation.UserService;
+
 
 /**
  *
@@ -56,6 +55,12 @@ public class ServiceManager {
         roleParticipationService=new RoleParticipationService();
         participationService=new ParticipationService();
         eventService=new EventService();
+        roleUserService=new RoleUserService();
+        categoryService=new CategoryService();
+        entrepriseService=new EntrepriseService();
+        ratingService=new RatingService();
+        sessionService=new SessionService();
+        userService=new UserService();
     }
     
     public static  ServiceManager getInstance() {

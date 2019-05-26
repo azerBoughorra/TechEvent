@@ -37,13 +37,13 @@ public class RoleUserService extends ServiceUtils implements IRoleUserService {
             ResultSet rs = executeSelect("select * from role_user where isdeleted=0");
             while (rs.next()) {
                 RoleUser u = new RoleUser(
-                        rs.getInt("ROLE_ID"),
+                        rs.getInt("ROLE_ID_PK"),
                         rs.getString("ROLE_DESCRIPTION")
                 );
                 l.add(u);
             }
         } catch (Exception ex) {
-            Logger.getLogger(CommentService.class.getName()).log(Level.SEVERE, null, ex);
+        ex.printStackTrace();
         }
         return l;
     }
