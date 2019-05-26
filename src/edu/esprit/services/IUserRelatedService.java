@@ -5,14 +5,12 @@
  */
 package edu.esprit.services;
 
-import edu.esprit.models.Report;
+import java.util.List;
 
 /**
  *
- * @author azer
+ * @author abkhaldi
  */
-
-public interface IReportService extends IEventRelatedService<Report>,IUserRelatedService<Report> {
-    
-    
+public interface IUserRelatedService<T> extends IService<T>{
+    List<T> findByUser(int id);
 }
