@@ -60,6 +60,7 @@ public class ParticipationService extends ServiceUtils implements IParticipation
                 + obj.getEventId()
                 + "," + obj.getUserId()
                 + "," + obj.getRole().getId()
+                + "',0"
                 + ")";
         return execute(sql);
 
@@ -87,4 +88,11 @@ public class ParticipationService extends ServiceUtils implements IParticipation
  return findAll().stream()
                 .filter(c -> c.getEventId() == id)
                 .collect(Collectors.toList());    }
+
+    @Override
+    public List<Participation> findByUser(int id) {
+    return findAll().stream()
+                .filter(c -> c.getUserId()== id)
+                .collect(Collectors.toList());
+    }
 }

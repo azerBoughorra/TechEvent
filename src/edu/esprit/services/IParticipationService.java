@@ -6,12 +6,12 @@
 package edu.esprit.services;
 
 import edu.esprit.models.Participation;
-import java.util.List;
+
 
 /**
  *
  * @author azer
  */
-public interface IParticipationService extends IEventRelatedService<Participation> {
+public interface IParticipationService extends IEventRelatedService<Participation>,IUserRelatedService<Participation> {
 
 }

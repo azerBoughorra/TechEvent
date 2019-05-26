@@ -55,7 +55,8 @@ public class RoleParticipationService extends ServiceUtils implements IRoleParti
                 + ")"
                 + "values ("
                 + "'" + obj.getDescription()
-                + "')";
+                + "',0"
+                + ")";
         return execute(sql);
     }
 

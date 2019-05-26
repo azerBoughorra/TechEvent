@@ -5,12 +5,12 @@
  */
 package edu.esprit.services;
 
-import edu.esprit.models.Event;
+import java.util.List;
 
 /**
  *
- * @author azer
+ * @author abkhaldi
  */
-public interface IEventService extends IService<Event> {
-    
+public interface IUserRelatedService<T> extends IService<T>{
+    List<T> findByUser(int id);
 }
