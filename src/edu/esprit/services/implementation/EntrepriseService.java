@@ -37,7 +37,7 @@ public class EntrepriseService extends ServiceUtils implements IEntrepriseServic
     public List<Entreprise> findAll() {
   List<Entreprise> ent = new ArrayList<>();
   try {
-            ResultSet rs = executeSelect("select * from entreprise where isdelete=0");
+            ResultSet rs = executeSelect("select * from entreprise where isdeleted=0");
             while (rs.next()) {
                 Entreprise c = new Entreprise(
                         rs.getInt("ENTREPRISE_ID_PK"),
@@ -59,31 +59,27 @@ public class EntrepriseService extends ServiceUtils implements IEntrepriseServic
     
     @Override
     public boolean create(Entreprise obj) {
-  String sql = "insert into entreprise (`ENTREPRISE_ID_PK`,"
-                + "`ENTREPRISE_NAME`,"
-                + "`ISDELETED`)"
-                + "values ("
-                + obj.getId()
-                + "," + obj.getId()
-                + ",'" + obj.getName()
-                + "',0"
-                + ")";
+  String sql = "insert into `teck_event`.`entreprise` "
+                + "(`ENTREPRISE_NAME`) "
+                + "values "
+                + "('" + obj.getName()
+                + "');";
 
         return execute(sql);    }
 
     @Override
     public boolean edit(Entreprise obj) {
-String req = "UPDATE entreprise"
+String req = "UPDATE `teck_event`.`entreprise`"
                 + "SET"
-                + "`ENTREPRISE_NAME` = '" + obj.getName()
-                + "' WHERE `ENTREPRISE_ID_PK` ='" + obj.getId() + "'";
+                + "`ENTREPRISE_NAME` = '" + obj.getName()+"'"
+                + " WHERE `ENTREPRISE_ID_PK` =" + obj.getId() + ";";
 
         return execute(req);    }
 
     @Override
     public boolean delete(Entreprise obj) {
 
-        return execute("update entreprise set isdeleted='1' where ENTREPRISE_ID_PK=" + obj.getId());
+        return execute("update `teck_event`.`entreprise` set `isdeleted` =1 where `ENTREPRISE_ID_PK`=" + obj.getId()+";");
     }
 
    

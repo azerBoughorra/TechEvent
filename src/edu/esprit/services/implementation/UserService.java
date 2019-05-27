@@ -5,7 +5,10 @@
  */
 package edu.esprit.services.implementation;
 
+import edu.esprit.models.Entreprise;
 import edu.esprit.models.Participation;
+import edu.esprit.models.Report;
+import edu.esprit.models.RoleUser;
 import edu.esprit.models.User;
 import edu.esprit.services.IUserService;
 import edu.esprit.services.ServiceUtils;
@@ -14,6 +17,7 @@ import edu.esprit.utils.ServiceManager;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -24,7 +28,7 @@ public class UserService extends ServiceUtils implements IUserService {
     @Override
     public User find(int id) throws ComposedIDExeption {
         Optional<User> o = findAll().stream()
-                .filter(c -> c.getId()== id)
+                .filter(c -> c.getId() == id)
                 .findFirst();
         return o.isPresent() ? o.get() : null;
 
@@ -34,17 +38,20 @@ public class UserService extends ServiceUtils implements IUserService {
     public List<User> findAll() {
         List<User> l = new ArrayList<>();
         try {
-            ResultSet rs = executeSelect("select * from user_account where isdeleted=0");
+            ResultSet rs = executeSelect("select * from `teck_event`.`user_account` where `isdeleted`=0");
+            
             while (rs.next()) {
                 User user = new User(rs.getInt("USER_ID_PK"),
                         rs.getString("USER_EMAIL"), rs.getString("USER_NAME"), rs.getString("USER_LAST_NAME"),
-                        rs.getString("USER_LOGIN"),rs.getString("USER_PASSWORD"),
-                        new SimpleDateFormat("dd/MM/yyyy").parse(rs.getString("USER_BIRTHDATE")),
-                        rs.getString("USER_ADRESS"),rs.getString("USER_PHOTO_URL"),
-                        ServiceManager.getInstance().getEntrepriseService().find(rs.getInt("USER_ENTREPRISE_ID_FK")),
-                        ServiceManager.getInstance().getRoleUserService().find(rs.getInt("USER_ROLE_ID_FK"))
+                        rs.getString("USER_LOGIN"), rs.getString("USER_PASSWORD"),
+                        new SimpleDateFormat("dd/mm/yy").parse(rs.getString("USER_BIRTHDATE")),
+                        rs.getString("USER_ADRESS"), rs.getString("USER_PHOTO_URL"),
+                ServiceManager.getInstance().getEntrepriseService().find(rs.getInt("USER_ENTREPRISE_ID_FK")),
+                ServiceManager.getInstance().getRoleUserService().find(rs.getInt("USER_ROLE_ID_FK"))
                 );
-                user.setReports(ServiceManager.getInstance().getReportService().findByUser(rs.getInt("USER_ID_PK")));
+                List report = new ArrayList<Report>();
+                user.setReports(report);
+                //user.setReports(ServiceManager.getInstance().getReportService().findByUser(rs.getInt("USER_ID_PK")));
                 l.add(user);
             }
         } catch (Exception ex) {
@@ -55,32 +62,29 @@ public class UserService extends ServiceUtils implements IUserService {
 
     @Override
     public boolean create(User obj) {
-        String sql = "insert into user_account (`USER_ID_PK`,"
-                + "`USER_EMAIL,"
+        String sql = "insert into `teck_event`.`user_account` ("
+                + "`USER_EMAIL`,"
                 + "`USER_NAME`,"
-                + "`USER_LASTNAME`,"
+                + "`USER_LAST_NAME`,"
                 + "`USER_LOGIN`,"
                 + "`USER_PASSWORD`,"
                 + "`USER_BIRTHDATE`,"
                 + "`USER_ADRESS`,"
                 + "`USER_PHOTO_URL`,"
                 + "`USER_ENTREPRISE_ID_FK`,"
-                + "`USER_ROLE_ID_FK`,"
-                + "`ISDELETED`)"
-                + "values ("
-                + obj.getId()
-                + "," + obj.getEmail()
-                + ",'" + obj.getName()
+                + "`USER_ROLE_ID_FK`)"
+                + " values ("
+                + "'" + obj.getEmail()
+                + "','" + obj.getName()
                 + "','" + obj.getLastName()
-                + "'," + obj.getLogin()
-                + "," + obj.getPassword()
-                + ",'" + obj.getBirthday()
-                + ",'" + obj.getAdress()
-                + ",'" + obj.getPhotoURL()
-                + ",'" + obj.getEntreprise().getId()
-                + ",'" + obj.getRole().getId()
-                + "',0"
-                + ")";
+                + "','" + obj.getLogin()
+                + "','" + obj.getPassword()
+                + "','" + obj.getBirthday().getDate()+"/"+(obj.getBirthday().getMonth()+1)+"/"+(obj.getBirthday().getYear()-100)
+                + "','" + obj.getAdress()
+                + "','" + obj.getPhotoURL()
+                + "'," + obj.getEntreprise().getId()
+                + "," + obj.getRole().getId()
+                + ");";
 
         boolean r = execute(sql);
 
@@ -89,29 +93,30 @@ public class UserService extends ServiceUtils implements IUserService {
                 r = false;
             }
         }
-        
+
         return r;
     }
 
     @Override
     public boolean edit(User obj) {
-        String req = "UPDATE user_account"
-                + "SET"
-                + "`USER_EMAIL` = '" + obj.getEmail() + ","
-                + "`USER_NAME` = '" + obj.getName() + ","
-                + "`USER_LASTNAME` = '" + obj.getLastName() + ","
-                + "`USER_ADRESS` = '" + obj.getAdress() + ","
-                + "`USER_LOGIN` = '" + obj.getLogin() + ","
-                + "`USER_PASSWORD` = '" + obj.getPassword()+ ","
-                + "' WHERE `USER_ID_PK` ='" + obj.getId() + "'";
 
-        return execute(req);
+        String req1 = "UPDATE `teck_event`.`user_account`"
+                + "SET"
+                + "`USER_EMAIL` ='" + obj.getEmail() + "',"
+                + "`USER_NAME` ='" + obj.getName() + "',"
+                + "`USER_LAST_NAME` = '" + obj.getLastName() + "',"
+                + "`USER_LOGIN` = '" + obj.getLogin() + "',"
+                + "`USER_PASSWORD` = '" + obj.getPassword() + "',"
+                + "`USER_BIRTHDATE` = '" + obj.getBirthday().getDate()+"/"+(obj.getBirthday().getMonth()+1)+"/"+(obj.getBirthday().getYear()-100)+"',"
+                + "`USER_ADRESS` = '" + obj.getAdress() + "'"
+                + "WHERE `USER_ID_PK` = " + obj.getId() + ";";
+
+        return execute(req1);
     }
 
     @Override
     public boolean delete(User obj) {
-        return execute("update user_account set isdeleted='1' where USER_ID_PK=" + obj.getId());
+        return execute("update `teck_event`.`user_account` set `isdeleted`=1 where `USER_ID_PK`=" + obj.getId()+";");
     }
 
-    
 }
