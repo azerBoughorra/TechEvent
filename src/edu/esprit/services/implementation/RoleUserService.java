@@ -43,7 +43,7 @@ public class RoleUserService extends ServiceUtils implements IRoleUserService {
                 l.add(u);
             }
         } catch (Exception ex) {
-            Logger.getLogger(CommentService.class.getName()).log(Level.SEVERE, null, ex);
+        ex.printStackTrace();
         }
         return l;
     }

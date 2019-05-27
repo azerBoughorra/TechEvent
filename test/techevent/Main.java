@@ -30,11 +30,9 @@ public class Main {
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-        
-        
-        
+
+        System.out.println(ServiceManager.getInstance().getUserService().find(2));        
         RoleUser r = ServiceManager.getInstance().getRoleUserService().find(5);
-        
         ServiceManager.getInstance().getRoleUserService().delete(r);
         System.out.println(r);
     }
