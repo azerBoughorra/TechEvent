@@ -21,6 +21,7 @@ import edu.esprit.services.implementation.CategoryService;
 import edu.esprit.services.implementation.CommentService;
 import edu.esprit.services.implementation.EntrepriseService;
 import edu.esprit.services.implementation.EventService;
+import edu.esprit.services.implementation.LocationService;
 import edu.esprit.services.implementation.ParticipationService;
 import edu.esprit.services.implementation.RatingService;
 import edu.esprit.services.implementation.RoleParticipationService;
@@ -61,6 +62,7 @@ public class ServiceManager {
         ratingService=new RatingService();
         sessionService=new SessionService();
         userService=new UserService();
+        locationService=new LocationService();
     }
     
     public static  ServiceManager getInstance() {

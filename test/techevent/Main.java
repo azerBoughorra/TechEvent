@@ -34,7 +34,7 @@ public class Main {
         System.out.println(ServiceManager.getInstance().getUserService().find(2));        
         RoleUser r = ServiceManager.getInstance().getRoleUserService().find(5);
         ServiceManager.getInstance().getRoleUserService().delete(r);
-        System.out.println(r);
+        System.out.println(ServiceManager.getInstance().getLocationService().findAll());
     }
 
 }
