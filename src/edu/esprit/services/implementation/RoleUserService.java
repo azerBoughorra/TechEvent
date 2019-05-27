@@ -34,10 +34,10 @@ public class RoleUserService extends ServiceUtils implements IRoleUserService {
     public List<RoleUser> findAll() {
         List<RoleUser> l = new ArrayList<>();
         try {
-            ResultSet rs = executeSelect("select * from role_user where isdeleted=0");
+            ResultSet rs = executeSelect("select * from `teck_event`.`role_user` where `isdeleted`=0");
             while (rs.next()) {
                 RoleUser u = new RoleUser(
-                        rs.getInt("ROLE_ID"),
+                        rs.getInt("ROLE_ID_PK"),
                         rs.getString("ROLE_DESCRIPTION")
                 );
                 l.add(u);
@@ -50,30 +50,27 @@ public class RoleUserService extends ServiceUtils implements IRoleUserService {
 
     @Override
     public boolean create(RoleUser obj) {
-        String sql = "insert into role_user ("
+        String sql = "insert `teck_event`.`role_user` ("
                 + "`ROLE_DESCRIPTION`"
                 + ")"
                 + "values ("
                 + "'" + obj.getDescription()
-                + "',0"
-                + ")";
+                + "');";
         return execute(sql);
     }
 
     @Override
     public boolean edit(RoleUser obj) {
-        String sql = "update role_user set "
-                + "ROLE_DESCRIPTION='" + obj.getDescription()
-                + "' where ROLE_ID=" + obj.getId();
+        String sql = "update `teck_event`.`role_user` set "
+                + "`ROLE_DESCRIPTION`='" + obj.getDescription()
+                + "' where `ROLE_ID_PK`=" + obj.getId()+";";
         return execute(sql);
     }
 
     @Override
     public boolean delete(RoleUser obj) {
-        String sql = "update role_user set "
-                + "isdeleted=1"
-                + "where ROLE_ID=" + obj.getId();
-        return execute(sql);
+        
+        return execute("update `teck_event`.`role_user` set `isdeleted` =1 where `ROLE_ID_PK`=" + obj.getId()+";");
     }    
 
 

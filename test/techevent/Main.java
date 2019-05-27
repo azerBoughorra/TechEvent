@@ -5,7 +5,18 @@
  */
 package techevent;
 
+
+
+import edu.esprit.models.Entreprise;
+import edu.esprit.models.Participation;
+import edu.esprit.models.RoleUser;
+import edu.esprit.models.User;
+import edu.esprit.services.implementation.UserService;
 import edu.esprit.utils.ServiceManager;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -19,8 +30,13 @@ public class Main {
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-        System.out.println(ServiceManager.getInstance().getRoleParticipationService().find(1));
         
+        
+        
+        RoleUser r = ServiceManager.getInstance().getRoleUserService().find(5);
+        
+        ServiceManager.getInstance().getRoleUserService().delete(r);
+        System.out.println(r);
     }
 
 }

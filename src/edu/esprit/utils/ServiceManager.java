@@ -19,9 +19,12 @@ import edu.esprit.services.IRoleUserService;
 import edu.esprit.services.ISessionService;
 import edu.esprit.services.IUserService;
 import edu.esprit.services.implementation.CommentService;
+import edu.esprit.services.implementation.EntrepriseService;
 import edu.esprit.services.implementation.EventService;
 import edu.esprit.services.implementation.ParticipationService;
 import edu.esprit.services.implementation.RoleParticipationService;
+import edu.esprit.services.implementation.RoleUserService;
+import edu.esprit.services.implementation.UserService;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,6 +59,9 @@ public class ServiceManager {
         roleParticipationService=new RoleParticipationService();
         participationService=new ParticipationService();
         eventService=new EventService();
+        userService = new UserService();
+        roleUserService = new RoleUserService();
+        entrepriseService= new EntrepriseService();
     }
     
     public static  ServiceManager getInstance() {
