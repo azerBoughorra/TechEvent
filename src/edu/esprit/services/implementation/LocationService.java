@@ -24,11 +24,6 @@ import java.util.logging.Logger;
 public class LocationService extends ServiceUtils implements ILocationService {
 
     @Override
-    public List<Location> findByEvent(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public Location find(int id) throws ComposedIDExeption {
         return findAll().stream()
                 .filter(lo -> lo.getId() == id)
@@ -42,7 +37,7 @@ public class LocationService extends ServiceUtils implements ILocationService {
             ResultSet rs = executeSelect("select * from EVENT_LOCATION where isdeleted=0");
             while (rs.next()) {
                 Location lo = new Location(rs.getInt("EVENT_LOCATION_ID_PK"),
-                        rs.getString("EVENT_LOCATION_NAME"), rs.getDouble("EVENT_LOCATION_LAT"), rs.getDouble("EVENT_LOCATION_LONG "),
+                        rs.getString("EVENT_LOCATION_NAME"), rs.getDouble("EVENT_LOCATION_LAT"), rs.getDouble("EVENT_LOCATION_LONG"),
                         rs.getDouble("EVENT_LOCATION_ZIP_CODE")
                 );
                 l.add(lo);
@@ -55,16 +50,16 @@ public class LocationService extends ServiceUtils implements ILocationService {
 
     @Override
     public boolean create(Location obj) {
-         String sql = "insert into EVENT_LOCATION (`EVENT_LOCATION_ID_PK`,"
+        String sql = "insert into EVENT_LOCATION (`EVENT_LOCATION_ID_PK`,"
                 + "`EVENT_LOCATION_NAME`,"
                 + "`EVENT_LOCATION_LAT`,"
                 + "`EVENT_LOCATION_LONG`,"
-                 + "`EVENT_LOCATION_ZIP_CODE`,"
+                + "`EVENT_LOCATION_ZIP_CODE`,"
                 + "`ISDELETED`)"
                 + "values ("
                 + obj.getId()
-                + ","+ obj.getName()
-                + "," + obj.getLatitude()
+                + ",'" + obj.getName()
+                + "'," + obj.getLatitude()
                 + "," + obj.getLongitude()
                 + ",'" + obj.getZipCode()
                 + "',0"
@@ -75,19 +70,19 @@ public class LocationService extends ServiceUtils implements ILocationService {
 
     @Override
     public boolean edit(Location obj) {
-         String req = "UPDATE EVENT_LOCATION"
-                + "SET"
-                + "`EVENT_LOCATION_NAME` = '" + obj.getName()
-                + "`EVENT_LOCATION_LAT` = '" + obj.getLatitude()
-                + "`EVENT_LOCATION_LONG` = '" + obj.getLongitude()
-                + "`EVENT_LOCATION_ZIP_CODE` ='" + obj.getZipCode() + "' WHERE EVENT_LOCATION_ID_PK = '" + obj.getId();
-
+        String req = "UPDATE EVENT_LOCATION"
+                + " SET "
+                + "`EVENT_LOCATION_NAME`='" + obj.getName()
+                + "',`EVENT_LOCATION_LAT`=" + obj.getLatitude()
+                + ",`EVENT_LOCATION_LONG`=" + obj.getLongitude()
+                + ",`EVENT_LOCATION_ZIP_CODE`='" + obj.getZipCode() 
+                + "' WHERE EVENT_LOCATION_ID_PK=" + obj.getId();
         return execute(req);
     }
 
     @Override
     public boolean delete(Location obj) {
-        return execute("update EVENT_LOCATION set isdeleted='1' WHERE `EVENT_LOCATION_ID_PK` ='" + obj.getId());
+        return execute("update EVENT_LOCATION set isdeleted='1' WHERE `EVENT_LOCATION_ID_PK` =" + obj.getId());
     }
-    
+
 }

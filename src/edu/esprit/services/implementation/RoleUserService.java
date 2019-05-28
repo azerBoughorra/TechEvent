@@ -69,7 +69,6 @@ public class RoleUserService extends ServiceUtils implements IRoleUserService {
 
     @Override
     public boolean delete(RoleUser obj) {
-        
         return execute("update `teck_event`.`role_user` set `isdeleted` =1 where `ROLE_ID_PK`=" + obj.getId()+";");
     }    
 

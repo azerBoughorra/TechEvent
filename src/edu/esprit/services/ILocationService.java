@@ -11,6 +11,6 @@ import edu.esprit.models.Location;
  *
  * @author azer
  */
-public interface ILocationService extends IEventRelatedService<Location> {
+public interface ILocationService extends IService<Location> {
     
 }

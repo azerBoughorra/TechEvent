@@ -5,18 +5,11 @@
  */
 package techevent;
 
-
-
-import edu.esprit.models.Entreprise;
-import edu.esprit.models.Participation;
+import edu.esprit.models.Location;
 import edu.esprit.models.RoleUser;
-import edu.esprit.models.User;
-import edu.esprit.services.implementation.UserService;
 import edu.esprit.utils.ServiceManager;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
+
 
 /**
  *
@@ -31,9 +24,9 @@ public class Main {
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
 
-        System.out.println(ServiceManager.getInstance().getUserService().find(2));        
-        RoleUser r = ServiceManager.getInstance().getRoleUserService().find(5);
-        ServiceManager.getInstance().getRoleUserService().delete(r);
+        Location l=ServiceManager.getInstance().getLocationService().find(1);
+        l.setZipCode(666);
+        ServiceManager.getInstance().getLocationService().edit(l);
         System.out.println(ServiceManager.getInstance().getLocationService().findAll());
     }
 
