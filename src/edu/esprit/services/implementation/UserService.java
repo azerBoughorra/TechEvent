@@ -49,9 +49,8 @@ public class UserService extends ServiceUtils implements IUserService {
                 ServiceManager.getInstance().getEntrepriseService().find(rs.getInt("USER_ENTREPRISE_ID_FK")),
                 ServiceManager.getInstance().getRoleUserService().find(rs.getInt("USER_ROLE_ID_FK"))
                 );
-                List report = new ArrayList<Report>();
-                user.setReports(report);
-                //user.setReports(ServiceManager.getInstance().getReportService().findByUser(rs.getInt("USER_ID_PK")));
+               
+                user.setReports(ServiceManager.getInstance().getReportService().findByUser(rs.getInt("USER_ID_PK")));
                 l.add(user);
             }
         } catch (Exception ex) {
