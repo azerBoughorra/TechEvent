@@ -46,7 +46,7 @@ public class ReportService extends ServiceUtils implements IReportService {
                             rs.getInt("REPORTER_ID_FK"),
                             rs.getString("REPORT_BODY"),
                             rs.getInt("REPORT_TARGET_ID"),
-                            rs.getString("REPROT_TARGET"));
+                            rs.getString("REPORT_TARGET"));
                     reports.add(reportevent);
 
                 }
