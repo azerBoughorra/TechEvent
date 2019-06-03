@@ -5,12 +5,12 @@
  */
 package edu.esprit.services;
 
-import edu.esprit.models.Location;
+import java.util.List;
 
 /**
  *
- * @author azer
+ * @author abkhaldi
  */
-public interface ILocationService extends IService<Location> {
-    
+public interface IUserRelatedService<T> extends IService<T>{
+    List<T> findByUser(int id);
 }

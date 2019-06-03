@@ -12,21 +12,24 @@ package edu.esprit.models;
 public class Report {
 
     private int id;
-    private User reporter;
+    private int reporterId;
     private String body;
-    private Reportable target;
+    private int targetId;
+    private String targettype;
 
-    public Report(int id, User reporter, String body, Reportable target) {
+    public Report(int id, int reporterId, String body, int targetId, String targettype) {
         this.id = id;
-        this.reporter = reporter;
+        this.reporterId = reporterId;
         this.body = body;
-        this.target = target;
+        this.targetId = targetId;
+        this.targettype = targettype;
     }
 
-    public Report(User reporter, String body, Reportable target) {
-        this.reporter = reporter;
+    public Report(int reporterId, String body, int targetId, String targettype) {
+        this.reporterId = reporterId;
         this.body = body;
-        this.target = target;
+        this.targetId = targetId;
+        this.targettype = targettype;
     }
 
     public int getId() {
@@ -37,12 +40,12 @@ public class Report {
         this.id = id;
     }
 
-    public User getReporter() {
-        return reporter;
+    public int getReporterId() {
+        return reporterId;
     }
 
-    public void setReporter(User reporter) {
-        this.reporter = reporter;
+    public void setReporterId(int reporterId) {
+        this.reporterId = reporterId;
     }
 
     public String getBody() {
@@ -53,18 +56,27 @@ public class Report {
         this.body = body;
     }
 
-    public Reportable getTarget() {
-        return target;
+    public int getTargetId() {
+        return targetId;
     }
 
-    public void setTarget(Reportable target) {
-        this.target = target;
+    public void setTargetId(int targetId) {
+        this.targetId = targetId;
+    }
+
+    public String getTargettype() {
+        return targettype;
+    }
+
+    public void setTargettype(String targettype) {
+        this.targettype = targettype;
     }
 
     @Override
     public String toString() {
-        return "Report{" + "id=" + id + ", reporter=" + reporter + ", body=" + body + ", target=" + target + '}';
+        return "Report{" + "id=" + id + ", reporterId=" + reporterId + ", body=" + body + ", targetId=" + targetId + ", targettype=" + targettype + '}';
     }
+
     
-    
+
 }

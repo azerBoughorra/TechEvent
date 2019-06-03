@@ -41,9 +41,12 @@ public class Comment extends Reportable {
         return eventId;
     }
 
-    public void setEvent(int eventId) {
+    public void setEventId(int eventId) {
         this.eventId = eventId;
     }
+
+    
+
 
     public User getUser() {
         return User;
