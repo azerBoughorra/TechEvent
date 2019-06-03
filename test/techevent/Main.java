@@ -5,7 +5,11 @@
  */
 package techevent;
 
+import edu.esprit.models.Location;
+import edu.esprit.models.RoleUser;
 import edu.esprit.utils.ServiceManager;
+
+
 
 /**
  *
@@ -19,8 +23,11 @@ public class Main {
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-        System.out.println(ServiceManager.getInstance().getRoleParticipationService().find(1));
-        
+
+        Location l=ServiceManager.getInstance().getLocationService().find(1);
+        l.setZipCode(666);
+        ServiceManager.getInstance().getLocationService().edit(l);
+        System.out.println(ServiceManager.getInstance().getLocationService().findAll());
     }
 
 }

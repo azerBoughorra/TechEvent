@@ -13,7 +13,10 @@ public class Entreprise {
 
     private int id;
     private String name;
-
+    
+    public Entreprise(){
+        
+    }
     public Entreprise(int id, String name ) {
         this.id = id;
         this.name = name;

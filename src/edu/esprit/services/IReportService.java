@@ -12,7 +12,7 @@ import edu.esprit.models.Report;
  * @author azer
  */
 
-public interface IReportService extends IEventRelatedService<Report> {
+public interface IReportService extends IEventRelatedService<Report>,IUserRelatedService<Report> {
     
     
 }

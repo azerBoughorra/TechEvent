@@ -43,8 +43,8 @@ public class RatingService extends ServiceUtils implements IRatingService{
         try {
             ResultSet rs = executeSelect("select * from EVENT_RATING where isdeleted=0");
             while (rs.next()) {
-                Rating ra = new Rating(ServiceManager.getInstance().getUserService().find(rs.getInt("USER_ID_FK_PK")),
-                        rs.getInt("EVENT_ID_FK_PK"), rs.getDouble("EVENT_RATE ")
+                Rating ra = new Rating(rs.getInt("USER_ID_FK_PK"),
+                        rs.getInt("EVENT_ID_FK_PK"), rs.getDouble("EVENT_RATE")
                 );
                 l.add(ra);
             }
@@ -61,7 +61,7 @@ public class RatingService extends ServiceUtils implements IRatingService{
                 + "`EVENT_RATE`,"
                 + "`ISDELETED`)"
                 + "values ("
-                + obj.getUser().getId()
+                + obj.getUserId()
                 + "," + obj.getEventId()
                 + "," + obj.getRate()
                 + "',0"
@@ -75,14 +75,14 @@ public class RatingService extends ServiceUtils implements IRatingService{
        String req = "UPDATE EVENT_RATING"
                 + "SET"
                 + "`EVENT_RATE` = '" + obj.getRate()
-                + "' WHERE `USER_ID_FK_PK` ='" + obj.getUser().getId() + "' and EVENT_ID_FK_PK = '" + obj.getEventId() + "'";
+                + "' WHERE `USER_ID_FK_PK` ='" + obj.getUserId() + "' and EVENT_ID_FK_PK = '" + obj.getEventId() + "'";
 
         return execute(req);
     }
 
     @Override
     public boolean delete(Rating obj) {
-         return execute("update event_comment set isdeleted='1' WHERE `USER_ID_FK_PK` ='" + obj.getUser().getId() + "' and EVENT_ID_FK_PK = '" + obj.getEventId());
+         return execute("update event_comment set isdeleted='1' WHERE `USER_ID_FK_PK` ='" + obj.getUserId() + "' and EVENT_ID_FK_PK = '" + obj.getEventId());
     }
     
     
