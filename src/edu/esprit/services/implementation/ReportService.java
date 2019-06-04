@@ -37,7 +37,7 @@ public class ReportService extends ServiceUtils implements IReportService {
     public List<Report> findAll() {
         List<Report> reports = new ArrayList<Report>();
          try {
-        ResultSet rs = executeSelect("select * from report where isdelete=0");
+        ResultSet rs = executeSelect("select * from `teck_event`.`report` where `isdeleted`=0");
        
             while (rs.next()) 
 

@@ -7,11 +7,13 @@ package techevent;
 
 import edu.esprit.models.Entreprise;
 import edu.esprit.models.Report;
+import edu.esprit.models.User;
 import edu.esprit.utils.DBConnection;
 import edu.esprit.utils.ServiceManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 
 /**
  *
@@ -25,9 +27,10 @@ public class Main {
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-        Report r = ServiceManager.getInstance().getReportService().find(1);
-        System.out.println(r);
-        
+//        List<Report> r = ServiceManager.getInstance().getReportService().findAll();
+//        r.toString();
+        User u = ServiceManager.getInstance().getUserService().find(1);
+        System.out.println(u);
     }
 
 }
