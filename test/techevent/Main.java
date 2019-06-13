@@ -24,10 +24,8 @@ public class Main {
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
 
-        Location l=ServiceManager.getInstance().getLocationService().find(1);
-        l.setZipCode(666);
-        ServiceManager.getInstance().getLocationService().edit(l);
-        System.out.println(ServiceManager.getInstance().getLocationService().findAll());
+       
+        System.out.println(ServiceManager.getInstance().getUserService().findAll());
     }
 
 }

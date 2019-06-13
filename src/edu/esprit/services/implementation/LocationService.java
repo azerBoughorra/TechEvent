@@ -85,4 +85,6 @@ public class LocationService extends ServiceUtils implements ILocationService {
         return execute("update EVENT_LOCATION set isdeleted='1' WHERE `EVENT_LOCATION_ID_PK` =" + obj.getId());
     }
 
+    
+
 }
