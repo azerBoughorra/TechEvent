@@ -15,6 +15,7 @@ public class Report {
     private User reporter;
     private String body;
     private Reportable target;
+ 
 
     public Report(int id, User reporter, String body, Reportable target) {
         this.id = id;
