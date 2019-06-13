@@ -44,7 +44,7 @@ public class RatingService extends ServiceUtils implements IRatingService{
             ResultSet rs = executeSelect("select * from EVENT_RATING where isdeleted=0");
             while (rs.next()) {
                 Rating ra = new Rating(ServiceManager.getInstance().getUserService().find(rs.getInt("USER_ID_FK_PK")),
-                        rs.getInt("EVENT_ID_FK_PK"), rs.getDouble("EVENT_RATE ")
+                        rs.getInt("EVENT_ID_FK_PK"), rs.getDouble("EVENT_RATE")
                 );
                 l.add(ra);
             }

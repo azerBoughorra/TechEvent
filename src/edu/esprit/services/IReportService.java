@@ -12,9 +12,10 @@ import java.util.List;
  *
  * @author azer
  */
+public interface IReportService extends IEventRelatedService<Report>, IUserRelatedService<Report> {
 
-public interface IReportService extends IEventRelatedService<Report>,IUserRelatedService<Report> {
-    
     public List<Report> findByTarget(String targettype);
-    
+
+    public List<Report> findByComment(int id);
+
 }
