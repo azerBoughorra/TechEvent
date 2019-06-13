@@ -70,13 +70,14 @@ public class ReportService extends ServiceUtils implements IReportService {
 
     @Override
     public boolean edit(Report obj) {
-        String req = "UPDATE `teck_event`.`report`"
-                + "SET"
-                + "`REPORTER_ID_FK` =" + obj.getReporterId() + ","
-                + "`REPORT_BODY` =" + obj.getBody() + ","
-                + "`REPORT_TARGET` = " + obj.getTargettype() + ","
-                + "`REPORT_TARGET_ID` = " + obj.getTargetId()
-                + "WHERE `REPORT_ID_PK`=" + obj.getId() + ";";
+        String req = "UPDATE report "
+                + "SET "
+                + " `REPORTER_ID_FK` =" + obj.getReporterId() + ","
+                + " `REPORT_BODY` ='" + obj.getBody() + "',"
+                + " `REPORT_TARGET` = '" + obj.getTargettype() + "',"
+                + " `REPORT_TARGET_ID` = " + obj.getTargetId()
+                + " WHERE `REPORT_ID_PK`=" + obj.getId() + ";";
+        System.out.println(req);
         return execute(req);
     }
 

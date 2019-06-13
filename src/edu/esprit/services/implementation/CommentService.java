@@ -50,6 +50,8 @@ public class CommentService extends ServiceUtils implements ICommentService {
                         rs.getInt("EVENT_COMMENT_EVENT_ID_FK"),
                         ServiceManager.getInstance().getUserService().find(rs.getInt("EVENT_COMMENT_USER_ID_FK")),
                         rs.getString("EVENT_COMMENT_BODY"));
+                                c.setReports(ServiceManager.getInstance().getReportService().findByComment(rs.getInt("EVENT_COMMENT_ID_PK")));
+
                 l.add(c);
             }
         } catch (Exception ex) {
