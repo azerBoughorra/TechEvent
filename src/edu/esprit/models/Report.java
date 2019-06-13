@@ -17,6 +17,7 @@ public class Report {
     private int targetId;
     private String targettype;
 
+
     public Report(int id, int reporterId, String body, int targetId, String targettype) {
         this.id = id;
         this.reporterId = reporterId;

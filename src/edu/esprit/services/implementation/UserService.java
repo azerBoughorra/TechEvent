@@ -33,7 +33,30 @@ public class UserService extends ServiceUtils implements IUserService {
         return o.isPresent() ? o.get() : null;
 
     }
+    
+    
 
+    public User authentication(String Login, String password) throws Exception{
+
+        
+            //retrive all users
+            List<User> users = findAll();
+            //find user by identifier and password
+            Optional<User> optional = users.stream()
+                    .filter(e -> (e.getLogin().equals(Login) || e.getEmail().equals(Login)))
+                    .filter(e -> e.getPassword().equals(password))
+                    .findFirst();
+            //if exists
+            if (optional.isPresent()) {
+                
+                return optional.get();
+            } else {
+                throw new Exception();
+            }
+        
+
+    }
+    
     @Override
     public List<User> findAll() {
         List<User> l = new ArrayList<>();
@@ -51,6 +74,7 @@ public class UserService extends ServiceUtils implements IUserService {
                 );
                
                 user.setReports(ServiceManager.getInstance().getReportService().findByUser(rs.getInt("USER_ID_PK")));
+                
                 l.add(user);
             }
         } catch (Exception ex) {
