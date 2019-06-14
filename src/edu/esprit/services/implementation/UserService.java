@@ -142,4 +142,12 @@ public class UserService extends ServiceUtils implements IUserService {
         return execute("update `teck_event`.`user_account` set `isdeleted`=1 where `USER_ID_PK`=" + obj.getId()+";");
     }
 
+    @Override
+    public User login(String login, String password) {
+         Optional<User> o = findAll().stream()
+                .filter(c -> c.getLogin().equals(login)&&c.getPassword().equals(password))
+                .findFirst();
+        return o.isPresent() ? o.get() : null;
+    }
+
 }

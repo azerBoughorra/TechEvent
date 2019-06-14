@@ -12,5 +12,7 @@ import edu.esprit.models.User;
  * @author azer
  */
 public interface IUserService extends IService<User> {
-    
+
+    User login(String login, String password);
+
 }

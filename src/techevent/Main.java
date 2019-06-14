@@ -23,7 +23,7 @@ public class Main {
         // TODO code application logic here
 
   
-        System.out.println(ServiceManager.getInstance().getReportService().findAll());
+        System.out.println(ServiceManager.getInstance().getUserService().findAll());
     }
 
 }
